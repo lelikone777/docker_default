@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+  #PHP Service
+  php:
+    build:
+      context: .
+      dockerfile: ./docker/php/php7.4-fpm.docker
+    container_name: php
+    restart: unless-stopped
+    tty: true
+    environment:
+      PHP_IDE_CONFIG: serverName=Docker
+    working_dir: /var/www/domains
+    volumes:
+      - ./project:/var/www/domains/project:cached
+      - ./docker/php/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini:cached
+
+  #Nginx Service
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "127.0.0.1:8810:81"
+    volumes:
+      - ./project:/var/www/domains/project:cached
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/:cached
+
+  #MySql Service
+  mysql:
+    image: mysql:5.7.22
+    container_name: mysql
+    restart: unless-stopped
+    tty: true
+    environment:
+      MYSQL_DATABASE: 127.0.0.1
+      MYSQL_USER: root
+      MYSQL_PASSWORD: pass
+      MYSQL_ROOT_PASSWORD: pass
+    ports:
+      - "127.0.0.1:33067:3306"
+    volumes:
+      - ./docker/data/mysql:/var/lib/mysql:cached
+      - ./docker/data/mysql-dump:/var/www/mysql-dump
+
+  #PMA Service
+  pma:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8801:80"
+    environment:
+      MYSQL_DATABASE: localhost
+      MYSQL_USER: root
+      MYSQL_PASSWORD: pass
+      MYSQL_ROOT_PASSWORD: pass
+      PMA_HOST: mysql
+      PMA_PORT: 3306
