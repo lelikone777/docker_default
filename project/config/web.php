@@ -4,9 +4,11 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [
-    'id' => 'basic',
+    'id' => 'Yii2',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+//      Глобальный способ установить шаблон из файла в папке layouts
+//    'layout' => 'basic',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
