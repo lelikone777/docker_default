@@ -10,8 +10,12 @@ class PostController extends AppController
 //Устонавливаем шаблон для вывода страниц только для этого контроллера
     public $layout = 'basic';
 
-    public function actionTest() {
-        return $this->render('test');
+    public function actionIndex() {
+        if (Yii::$app->request->isAjax) {
+            debug($_GET);
+            return 'test';
+        }
+        return $this->render('index');
     }
 
     public function actionShow() {

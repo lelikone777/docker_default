@@ -1,6 +1,7 @@
 <?php
 
 use app\assets\AppAsset;
+use yii\helpers\Html;
 AppAsset::register($this);
 ?>
 
@@ -19,9 +20,27 @@ AppAsset::register($this);
         <body>
             <?php $this->beginBody() ?>
 
+            <div class="wrap">
+                <div class="container">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                          <?= Html::a('Главная', '../', ['class' => ['persistent' => 'nav-link active']]) ?>
+                        </li>
+                        <li class="nav-item">
+                        <?= Html::a('Статьи', ['/post/index'], ['class' => ['persistent' => 'nav-link']]) ?>
+                        </li>
+                        <li class="nav-item">
+                            <?= Html::a('Статья', ['/post/show'], ['class' => ['persistent' => 'nav-link']]) ?>
+                        </li>
+                    </ul>
 
-            <h1>Hello Basic</h1>
-            <?= $content ?>
+
+
+                    <?= $content ?>
+
+
+                </div>
+            </div>
 
 
             <?php $this->endBody() ?>
