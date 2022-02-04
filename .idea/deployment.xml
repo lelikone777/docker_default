@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="inspiritum" remoteFilesAllowedToDisappearOnAutoupload="false" autoUploadExternalChanges="true">
+  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="link-host" remoteFilesAllowedToDisappearOnAutoupload="false" autoUploadExternalChanges="true" showNewOnSourceInSync="false">
     <serverData>
       <paths name="inspiritum">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
           </mappings>
+          <excludedPaths>
+            <excludedPath path="/var/www/domains" />
+          </excludedPaths>
         </serverdata>
       </paths>
       <paths name="link-host">
         <serverdata>
           <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$/" web="/" />
           </mappings>
         </serverdata>
       </paths>
